@@ -1,0 +1,158 @@
+### 1. Summary
+
+The [Claude Platform & Model Foundations](https://anthropic-partners.skilljar.com/path/claude-certified-associate-foundations/claude-platform-model-foundations/486586/scorm/150nrjj19ybs6) module establishes that session output quality is determined *before* writing a prompt through four core front-end decisions: **Entry Point Selection**, **Capability Layer Activation**, **Model Selection**, and **Context Management**.
+
+* **Entry Point Selection:** Selecting the appropriate interface—such as the API/SDK for programmatic integration, Claude Workbench for prompt prototyping, or the Web UI/Desktop App for interactive tasks—controls available system parameters and feature sets.
+* **Capability Layer Activation:** Activating features like **Skills & Code Execution** and **Memory** equips Claude to dynamically execute code in sandboxes and retain contextual state across sessions without repeated manual re-prompting.
+* **Model Selection:** Balancing quality, speed, token cost, and workload volume across three tiers:
+* **Haiku:** Optimized for low latency, high throughput, lightweight classification, and cost-effective bulk task processing.
+* **Sonnet:** The enterprise workhorse balancing high intelligence, complex data transformations, code generation, and general reasoning.
+* **Opus:** The highest-intelligence tier designed for deep analytical research, complex architectural synthesis, and nuanced edge-case handling.
+
+
+* **Context Management:** Structuring token allocations and managing window limits to preserve continuity across multi-turn interactions.
+
+---
+
+### 2. Clear & Simple Explanation
+
+* **Core Entry Points:** The access pathway you choose to interact with Claude (API vs. Workbench vs. Web App). The entry point determines your level of control over system prompts and developer configurations.
+* **Capability Layer:** Modular system features enabled before running prompts:
+* *Code Execution:* Gives Claude a sandboxed execution environment to run code, calculate math, and process data on the fly.
+* *Memory:* Stores rules, background guidelines, and context across separate chat threads so you do not have to re-upload preferences.
+
+
+* **Model Selection:** Picking the right engine based on task requirements:
+* *Haiku:* Fast and cheap—best for filtering logs, tagging tickets, or quick background processing.
+* *Sonnet:* Powerful and balanced—the primary choice for software development, technical drafting, and business workflows.
+* *Opus:* Highly analytical—best for complex system design, deep legal/regulatory audits, and difficult logical reasoning.
+
+
+* **Context Management:** Regulating short-term token memory during extended interactions so Claude stays within window constraints without dropping earlier instructions.
+
+---
+
+### 3. Real-World Application
+
+#### Architecture Scenario: Automated Enterprise Incident Triage & Remediation Pipeline
+
+An enterprise DevOps platform automatically ingests, triages, and resolves system alerts coming from observability platforms:
+
+1. **API Entry Point:** Ingests raw alert logs programmatically via backend SDK integration.
+2. **Model Router:**
+* **Haiku Tier:** Filters incoming log streams, discarding false positives and classifying ticket severity.
+* **Sonnet Tier:** Analyzes stack traces, writes diagnostic scripts, and drafts pull requests for standard bug fixes.
+* **Opus Tier:** Evaluates high-severity critical incidents involving multi-service failures and security vulnerabilities.
+
+
+3. **Capability Layer:**
+* **Code Execution Sandbox:** Executes candidate remediation scripts against staging mock environments to verify fixes before deployment.
+* **Memory Store:** Keeps global infrastructure compliance standards active across execution runs without re-sending policy tokens.
+
+
+4. **Context Manager:** Dynamically trims intermediate execution logs before outputting final JSON incident reports.
+
+#### System Architecture Flow Diagram
+
+```text
+[ High-Volume Log Streams & Alert Triggers ]
+                    │
+                    ▼
+┌────────────────────────────────────────────────────────┐
+│               1. API Entry Point & Gateway             │
+└────────────────────────────────────────────────────────┘
+                    │
+                    ▼
+┌────────────────────────────────────────────────────────┐
+│            2. Dynamic Model Router (Logic)             │
+├───────────────────┬───────────────────┬────────────────┤
+│    Haiku Tier     │    Sonnet Tier    │   Opus Tier    │
+│ (Rapid Log Filtering│  (Code Patching & │  (Root-Cause   │
+│ & Triage)         │  Stack Parsing)   │   Architecture)│
+└─────────┬─────────┴─────────┬─────────┴────────┬───────┘
+          │                   │                  │
+          └───────────────────┼──────────────────┘
+                              │
+                              ▼
+┌────────────────────────────────────────────────────────┐
+│                 3. Capability Layer                    │
+├───────────────────────────┬────────────────────────────┤
+│   Code Execution Sandbox  │  Persistent Memory Engine  │
+│ (Remediation Test Run)    │ (Infra Policies & State)   │
+└───────────────────────────┴────────────────────────────┘
+                              │
+                              ▼
+┌────────────────────────────────────────────────────────┐
+│               4. Context Manager                       │
+│ (Token Trimming & State Summarization)                 │
+└───────────────────────────┴────────────────────────────┘
+                              │
+                              ▼
+[ Automated Pull Request & Structured Incident Summary ]
+
+```
+
+---
+
+### 4. Key Terms Note Section
+
+**Key Technical Terms**
+
+* **Entry Points:** Software interaction interfaces (API/SDK, Workbench, Web UI, Desktop App) that determine developer controls and configuration parameters.
+* **Capability Layer:** System-level functional extensions (Code Execution, Skills, Memory) activated prior to prompt submission to enhance execution capabilities.
+* **Claude Haiku:** Anthropic's low-latency, high-throughput model tier designed for lightweight, high-volume, and cost-sensitive tasks.
+* **Claude Sonnet:** Anthropic's enterprise workhorse model tier balancing speed, cost, and high-level reasoning capabilities.
+* **Claude Opus:** Anthropic's highest-intelligence model tier built for deep analytical reasoning, complex synthesis, and edge-case resolution.
+* **Context Management:** Strategies for structuring, truncating, and preserving token state within a model's context window.
+* **Code Execution:** A sandboxed runtime environment enabling Claude to write and execute code dynamically to evaluate logic or process data.
+* **Memory Feature:** A capability mechanism that retains contextual state, preferences, and background instructions across distinct sessions.
+
+---
+
+### 5. Exam Practice
+
+* **Question 1**
+A developer needs to evaluate system prompts, compare candidate model outputs side-by-side, and tune system parameters before writing integration code. Which entry point is designed specifically for this prototyping workflow?
+* A. Production API integration via Python SDK
+* B. Claude Desktop Application
+* C. Claude Workbench developer environment
+* D. Claude Web UI standard chat view
+
+
+* **Question 2**
+An enterprise customer support pipeline ingests 100,000 tickets daily. The requirement mandates fast ticket classification followed by multi-step resolution logic for complex escalations. Which model routing strategy optimizes both latency and operational cost?
+* A. Use Claude Haiku for initial rapid triage, and dynamically route complex escalations to Claude Sonnet or Opus.
+* B. Process all tickets exclusively through Claude Opus to guarantee maximum categorization accuracy.
+* C. Route initial classification to Claude Sonnet and re-assign high-priority escalations to Claude Haiku.
+* D. Disable model routing and execute all workloads via local context re-hydration on Haiku.
+
+
+* **Question 3**
+An automated code reviewer consistently consumes 40% of its prompt token budget re-sending company coding standards and compliance rules on every request. Which Capability Layer feature directly eliminates this token re-hydration overhead?
+* A. Maximizing the `max_tokens` output parameter on outgoing API requests
+* B. Switching the integration entry point from the API to the Web UI
+* C. Upgrading the execution tier from Claude Sonnet to Claude Opus
+* D. Activating the Memory feature to persist organizational guidelines across sessions
+
+
+* **Question 4**
+According to the Claude platform framework, which four front-end interaction decisions establish the quality ceiling for session output before a prompt is submitted?
+* A. System role definition, UI theme setting, temperature float value, and maximum token output limit
+* B. Entry point selection, capability layer activation, model selection, and context management strategy
+* C. API key secret generation, database schema indexing, max retry budget, and deployment region
+* D. Token pricing tier, network bandwidth throttle, markdown parser setting, and vector index size
+
+
+
+---
+
+#### Answers & Explanations
+
+* **Question 1: Correct Answer: C**
+*Explanation:* Claude Workbench is the developer prototyping workspace built specifically for testing system prompts, tuning hyperparameter settings, and comparing model outputs side-by-side before committing code.
+* **Question 2: Correct Answer: A**
+*Explanation:* Claude Haiku offers low-latency, cost-effective execution for high-volume ticket triage. Dynamically routing complex cases to Sonnet or Opus applies high intelligence only where needed, optimizing cost and overall latency.
+* **Question 3: Correct Answer: D**
+*Explanation:* The Memory feature within the Capability Layer retains rules and background context across sessions, eliminating the need to repeatedly re-send standard guidance tokens in every API request payload.
+* **Question 4: Correct Answer: B**
+*Explanation:* The foundational framework specifies Entry Point Selection, Capability Layer Activation, Model Selection, and Context Management as the four decisions that dictate the quality ceiling before prompt execution.
